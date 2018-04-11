@@ -9,8 +9,10 @@ In command line in the root folder, retrieve the latest nuget packages by trigge
 > >   `dotnet restore` 
 
 ### Run the project
-Drill into to the api project: `cd ninja-shop.api`
-you may then trigger a dotnet run to start the api on port 5000 (http://localhost:5000)
+Drill into to the api project: `cd ninja-shop.api` and then trigger the following:
+>>`dotnet run`
+
+The api is now running on port 5000 (http://localhost:5000)
 
 To run the unit tests, drill into the tests folder "cd ninja-shop.tests" and run `dotnet test`.
 if successful, you should recieve:
