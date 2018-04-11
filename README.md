@@ -1,10 +1,17 @@
 # ninja-shop-api
-The .net core web api that is accompanied by the ninja-store-ui.
+The .net core web api that is accompanied by the ninja-store-ui. It's purpose is to store data and provide RESTful routes to access each resource.
 
-To get started, you need .net core 2.0 installed on your machine.
+
+Clone or Download the project from github
+### Prerequisites
+* .net core 2.0
+* optional - vscode, rider, Visual Studio to view/edit
+* optional - git scm to clone 
+
+### Getting started / Restore the packages
 Clone or Download the project from github
 
-### Restore the packages
+
 In command line in the root folder, retrieve the latest nuget packages by triggering:
 > >   `dotnet restore` 
 
