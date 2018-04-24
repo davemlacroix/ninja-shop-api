@@ -22,7 +22,7 @@ namespace ninja_shop.api.InMemoryInfrastructure
 
         public Product GetProduct(int productId)
         {
-            return _dataContext.Products.First(x => x.Id == productId);
+            return _dataContext.Products.SingleOrDefault(x => x.Id == productId);
         }
 
         public IList<Product> GetProducts()

@@ -57,6 +57,17 @@ namespace ninja_shop.tests.InMemoryInfrastructure
         }
 
         [Test]
+        public void GetOrder_WhenNoneExist_ReturnsNull()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Orders.Returns(new List<Order>());
+
+            var returnOrder = new OrderRepository(dataContext).GetOrder(1);
+
+            Assert.IsNull(returnOrder);
+        }
+
+        [Test]
         public void CreateOrder_ReturnsOrder()
         {
             var requestList = new List<ProductRequest>
@@ -92,7 +103,7 @@ namespace ninja_shop.tests.InMemoryInfrastructure
 
             var returnOrder = new OrderRepository(dataContext).CreateOrder(1, requestList);
 
-            Assert.AreEqual(127, returnOrder.Total );
+            Assert.AreEqual(127, returnOrder.Total);
         }
     }
 }

@@ -55,5 +55,16 @@ namespace ninja_shop.tests.InMemoryInfrastructure
 
             Assert.AreSame(product, returnProduct);
         }
+        
+        [Test]
+        public void GetProduct_WhenNoneExist_ReturnsNull()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Returns(new List<Product>());
+
+            var returnProduct = new ProductRepository(dataContext).GetProduct(1);
+
+            Assert.IsNull(returnProduct);
+        }
     }
 }

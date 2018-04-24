@@ -21,7 +21,7 @@ namespace ninja_shop.api.InMemoryInfrastructure
 
         public Order GetOrder(int orderId)
         {
-            return _dataContext.Orders.First(x => x.Id == orderId);
+            return _dataContext.Orders.SingleOrDefault(x => x.Id == orderId);
         }
 
         public IList<Order> GetOrders()

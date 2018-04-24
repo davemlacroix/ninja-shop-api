@@ -26,7 +26,7 @@ namespace ninja_shop.api.InMemoryInfrastructure
 
         public Customer GetCustomer(int customerId)
         {
-            return _dataContext.Customers.First(x => x.Id == customerId);
+            return _dataContext.Customers.SingleOrDefault(x => x.Id == customerId);
         }
 
         public Customer CreateCustomer(Customer customer)

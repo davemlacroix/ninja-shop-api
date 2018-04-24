@@ -58,6 +58,17 @@ namespace ninja_shop.tests.InMemoryInfrastructure
         }
 
         [Test]
+        public void GetCustomer_WhenNoneExist_ReturnsNull()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Customers.Returns(new List<Customer>());
+            
+            var returnCustomer = new CustomerRepository(dataContext).GetCustomer(999);
+            
+            Assert.IsNull(returnCustomer);
+        }
+
+        [Test]
         public void GetOrders_WhenGivenGoodIds_returnsOrdersForCustomer()
         {
             var dataContext = Substitute.For<IDataContext>();
@@ -73,7 +84,7 @@ namespace ninja_shop.tests.InMemoryInfrastructure
 
             Assert.AreEqual(2, customerOrders.Count);
         }
-        
+
         //we do not test a single order because you should now be going to the Order resource
     }
 }
