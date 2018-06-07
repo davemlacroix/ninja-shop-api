@@ -45,3 +45,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/ninja-shop.api/bin/Debug/netcoreapp2.0
+/ninja-shop.api/obj/Debug/netcoreapp2.0
+/ninja-shop.api/obj/Release/netcoreapp2.0
+/ninja-shop.api/obj
+/ninja-shop.api/Properties
+/.vs
