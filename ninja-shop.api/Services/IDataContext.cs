@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ninja_shop.core.Models;
 
-namespace ninja_shop.api.InMemoryInfrastructure
+namespace ninja_shop.api.Services
 {
     public interface IDataContext
     {

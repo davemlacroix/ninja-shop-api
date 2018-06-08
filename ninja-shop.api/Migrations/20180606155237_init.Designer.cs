@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using ninja_shop.api.DataContexts;
+using ninja_shop.api.DatabaseInfrastructure;
 
 namespace ninjashop.api.Migrations
 {

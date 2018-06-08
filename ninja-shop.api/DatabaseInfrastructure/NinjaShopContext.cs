@@ -1,7 +1,7 @@
 ﻿using ninja_shop.core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ninja_shop.api.DataContexts
+namespace ninja_shop.api.DatabaseInfrastructure
 {
     public class NinjaShopContext : DbContext
     {

@@ -3,6 +3,7 @@ using ninja_shop.api.InMemoryInfrastructure;
 using ninja_shop.core.Models;
 using NSubstitute;
 using NUnit.Framework;
+using ninja_shop.api.Services;
 
 namespace ninja_shop.tests.InMemoryInfrastructure
 {

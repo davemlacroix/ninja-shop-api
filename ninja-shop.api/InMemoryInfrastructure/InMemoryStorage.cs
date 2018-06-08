@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ninja_shop.core.Models;
+using ninja_shop.api.Services;
 
 namespace ninja_shop.api.InMemoryInfrastructure
 {
