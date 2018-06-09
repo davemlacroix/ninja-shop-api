@@ -1,11 +1,7 @@
 ﻿using ninja_shop.api.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ninja_shop.core.Models;
-using ninja_shop.api.DatabaseInfrastructure;
 
 namespace ninja_shop.api.DatabaseInfrastructure
 {
@@ -13,9 +9,9 @@ namespace ninja_shop.api.DatabaseInfrastructure
     {
 
         static DatabaseStorage() { }
-
         DatabaseStorage() { }
 
+        public static NinjaShopContext Context = new NinjaShopContext();
         public static DatabaseStorage Instance { get; private set; } = new DatabaseStorage();
 
         public IList<Product> Products => GetProducts();
@@ -24,26 +20,17 @@ namespace ninja_shop.api.DatabaseInfrastructure
 
         private IList<Product> GetProducts()
         {
-            using (var context = new NinjaShopContext())
-            {
-                return context.Products.ToList();
-            }
+            return Context.Products.ToList();
         }
 
         private IList<Customer> GetCustomer()
         {
-            using (var context = new NinjaShopContext())
-            {
-                return context.Customers.ToList();
-            }
+            return Context.Customers.ToList();
         }
 
         private IList<Order> GetOrders()
         {
-            using (var context = new NinjaShopContext())
-            {
-                return context.Orders.ToList();
-            }
+            return Context.Orders.ToList();
         }
     }
 }

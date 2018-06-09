@@ -2,13 +2,13 @@
 using System.Linq;
 using ninja_shop.api.Services;
 using ninja_shop.core.Models;
-using ninja_shop.api.DatabaseInfrastructure;
 
 namespace ninja_shop.api.DatabaseInfrastructure
 {
     public class DatabaseOrderRepository : IOrderRepository
     {
         private readonly IDataContext _dataContext;
+
 
         public DatabaseOrderRepository(IDataContext dataContext)
         {
@@ -37,11 +37,9 @@ namespace ninja_shop.api.DatabaseInfrastructure
             order.ProductRequests = productRequests;
             order.Total = productRequests.Sum(x => x.CurrentPrice * x.RequestCount);
 
-            using (var context = new NinjaShopContext())
-            {
-                context.Orders.Add(order);
-                context.SaveChanges();
-            }
+            DatabaseStorage.Context.Orders.Add(order);
+            DatabaseStorage.Context.SaveChanges();
+
             return order;
         }
     }

@@ -1,11 +1,8 @@
-﻿using ninja_shop.api.DatabaseInfrastructure;
-using ninja_shop.api.Services;
+﻿using ninja_shop.api.Services;
 using ninja_shop.core.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ninja_shop.api.DatabaseInfrastructure
 {
@@ -35,11 +32,8 @@ namespace ninja_shop.api.DatabaseInfrastructure
 
         public Customer CreateCustomer(Customer customer)
         {
-            using (var context = new NinjaShopContext())
-            {
-                context.Customers.Add(customer);
-                context.SaveChanges();
-            }
+            DatabaseStorage.Context.Customers.Add(customer);
+            DatabaseStorage.Context.SaveChanges();
 
             return customer;
         }
