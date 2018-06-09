@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using ninja_shop.api.InMemoryInfrastructure;
 using ninja_shop.api.Services;
 using Newtonsoft.Json.Serialization;
+using ninja_shop.api.DatabaseInfrastructure;
 
 namespace ninja_shop.api
 {
@@ -46,11 +47,11 @@ namespace ninja_shop.api
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("openPipe"));
             });
-            services.AddSingleton<IDataContext>(InMemoryStorage.Instance);
+            services.AddSingleton<IDataContext>(DatabaseStorage.Instance);
             
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ICustomerRepository, DatabaseCustomerRepository>();
+            services.AddScoped<IOrderRepository, DatabaseOrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

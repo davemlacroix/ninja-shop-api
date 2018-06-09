@@ -10,7 +10,7 @@ using ninja_shop.api.DatabaseInfrastructure;
 namespace ninjashop.api.Migrations
 {
     [DbContext(typeof(NinjaShopContext))]
-    [Migration("20180609005448_init")]
+    [Migration("20180609024136_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,7 +113,7 @@ namespace ninjashop.api.Migrations
 
             modelBuilder.Entity("ninja_shop.core.Models.ProductRequest", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -121,9 +121,11 @@ namespace ninjashop.api.Migrations
 
                     b.Property<int?>("OrderId");
 
+                    b.Property<int>("ProductId");
+
                     b.Property<int>("RequestCount");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 

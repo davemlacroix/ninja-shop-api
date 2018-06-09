@@ -111,7 +111,7 @@ namespace ninjashop.api.Migrations
 
             modelBuilder.Entity("ninja_shop.core.Models.ProductRequest", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -119,9 +119,11 @@ namespace ninjashop.api.Migrations
 
                     b.Property<int?>("OrderId");
 
+                    b.Property<int>("ProductId");
+
                     b.Property<int>("RequestCount");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 

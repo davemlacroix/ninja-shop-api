@@ -64,15 +64,16 @@ namespace ninjashop.api.Migrations
                 name: "ProductRequests",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<int>(nullable: false),
                     CurrentPrice = table.Column<double>(nullable: false),
                     RequestCount = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductRequests", x => x.ProductId);
+                    table.PrimaryKey("PK_ProductRequests", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ProductRequests_Orders_OrderId",
                         column: x => x.OrderId,
