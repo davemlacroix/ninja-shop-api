@@ -9,10 +9,12 @@ namespace ninja_shop.api.DatabaseInfrastructure
     public class DatabaseCustomerRepository : ICustomerRepository
     {
         private readonly IDataContext _dataContext;
+        private readonly NinjaShopContext _context;
 
-        public DatabaseCustomerRepository(IDataContext dataContext)
+        public DatabaseCustomerRepository(IDataContext dataContext, NinjaShopContext context)
         {
             _dataContext = dataContext;
+            _context = context;
         }
 
         public bool Exists(int customerId)
@@ -32,8 +34,8 @@ namespace ninja_shop.api.DatabaseInfrastructure
 
         public Customer CreateCustomer(Customer customer)
         {
-            DatabaseStorage.Context.Customers.Add(customer);
-            DatabaseStorage.Context.SaveChanges();
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
 
             return customer;
         }

@@ -6,15 +6,16 @@ namespace ninja_shop.api.DatabaseInfrastructure
     public class NinjaShopContext : DbContext
     {
 
+        public NinjaShopContext(DbContextOptions options)
+            : base(options)
+        {
+
+        }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ProductRequest> ProductRequests { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = NinjaShopData; Trusted_Connection = True;");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -8,11 +8,12 @@ namespace ninja_shop.api.DatabaseInfrastructure
     public class DatabaseOrderRepository : IOrderRepository
     {
         private readonly IDataContext _dataContext;
+        private readonly NinjaShopContext _context;
 
-
-        public DatabaseOrderRepository(IDataContext dataContext)
+        public DatabaseOrderRepository(IDataContext dataContext, NinjaShopContext context)
         {
             _dataContext = dataContext;
+            _context = context;
         }
 
         public bool Exists(int orderId)
@@ -37,8 +38,8 @@ namespace ninja_shop.api.DatabaseInfrastructure
             order.ProductRequests = productRequests;
             order.Total = productRequests.Sum(x => x.CurrentPrice * x.RequestCount);
 
-            DatabaseStorage.Context.Orders.Add(order);
-            DatabaseStorage.Context.SaveChanges();
+            _context.Orders.Add(order);
+            _context.SaveChanges();
 
             return order;
         }
