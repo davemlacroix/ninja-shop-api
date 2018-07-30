@@ -91,6 +91,51 @@ namespace ninja_shop.api.DatabaseInfrastructure
                         Price = 35,
                         HitPoints = 777,
                         ImageUrl = "https://openclipart.org/image/300px/svg_to_png/23610/StudioFibonacci-Cartoon-ninjas.png"
+                    },
+                    new Product
+                    {
+                        Id = 7,
+                        ProductName = "Pretzel Ninja Snack",
+                        Description = "Hungry from all of your ninja adventures? This Pretzel Ninja will be the perfect snack to give you the energy to get back to your ninja activities!",
+                        Price = 4,
+                        HitPoints = 1,
+                        ImageUrl = "https://openclipart.org/image/300px/svg_to_png/248493/Pretzel-Ninja-Leap.png"
+                    },
+                    new Product
+                    {
+                        Id = 8,
+                        ProductName = "Wanted Poster",
+                        Description = "Looking to recruit new ninja for your crew? This poster fits perfectly on any telephone poll. We recommend using the 4-Point Shurikens to attach them for maximum recruiting impact.",
+                        Price = 7,
+                        HitPoints = 1,
+                        ImageUrl = "https://openclipart.org/image/300px/svg_to_png/222630/request-Character-1-NINJA-2015071432.png"
+                    },
+                    new Product
+                    {
+                        Id = 9,
+                        ProductName = "Nunchucks",
+                        Description = "The only equipment you need to start mastering the art of Nunchaku today!",
+                        Price = 12,
+                        HitPoints = 3,
+                        ImageUrl = "https://openclipart.org/image/300px/svg_to_png/254907/nunchaku_by_Juhele.png"
+                    },
+                    new Product
+                    {
+                        Id = 10,
+                        ProductName = "Ninja Cloak",
+                        Description = "This highly durable quick-dry cloak is the perfect way to up your game at midnight hide-and-seek game.",
+                        Price = 19,
+                        HitPoints = 4,
+                        ImageUrl = "https://openclipart.org/image/300px/svg_to_png/283311/cloak.png"
+                    },
+                    new Product
+                    {
+                        Id = 11,
+                        ProductName = "Katana",
+                        Description = "Not just any sword. The Katana is the ultimate collectors sword for the most dedicated of ninja. Worthy to be hung over the finest fireplace mantles.",
+                        Price = 48,
+                        HitPoints = 10,
+                        ImageUrl = "https://openclipart.org/image/300px/svg_to_png/12874/Anonymous-katana.png"
                     }
                 );
         }
