@@ -5,6 +5,7 @@ The .net core web api that is accompanied by the ninja-store-ui. It's purpose is
 Clone or Download the project from github
 ### Prerequisites
 * .net core 2.0
+* SQL Server
 * optional - vscode, rider, Visual Studio to view/edit
 * optional - git scm to clone 
 
@@ -13,7 +14,10 @@ Clone or Download the project from github
 
 
 In command line in the root folder, retrieve the latest nuget packages by triggering:
-> >   `dotnet restore` 
+>>   `dotnet restore`
+
+Build the SQL Server database from the Entity Framework migrations for the ninja-shop.api project with the following command:
+>> 'Update-Database'
 
 ### Run the project
 Drill into to the api project: `cd ninja-shop.api` and then trigger the following:

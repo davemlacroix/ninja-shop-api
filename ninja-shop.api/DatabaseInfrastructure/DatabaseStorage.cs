@@ -7,30 +7,31 @@ namespace ninja_shop.api.DatabaseInfrastructure
 {
     public class DatabaseStorage : IDataContext
     {
+        private NinjaShopContext _context;
 
-        static DatabaseStorage() { }
-        DatabaseStorage() { }
-
-        public static NinjaShopContext Context = new NinjaShopContext();
-        public static DatabaseStorage Instance { get; private set; } = new DatabaseStorage();
+        public DatabaseStorage(NinjaShopContext context)
+        {
+            _context = context;
+        }
 
         public IList<Product> Products => GetProducts();
         public IList<Order> Orders => GetOrders();
         public IList<Customer> Customers => GetCustomer();
 
+
         private IList<Product> GetProducts()
         {
-            return Context.Products.ToList();
+            return _context.Products.ToList();
         }
 
         private IList<Customer> GetCustomer()
         {
-            return Context.Customers.ToList();
+            return _context.Customers.ToList();
         }
 
         private IList<Order> GetOrders()
         {
-            return Context.Orders.ToList();
+            return _context.Orders.ToList();
         }
     }
 }

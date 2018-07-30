@@ -14,6 +14,7 @@ using ninja_shop.api.InMemoryInfrastructure;
 using ninja_shop.api.Services;
 using Newtonsoft.Json.Serialization;
 using ninja_shop.api.DatabaseInfrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace ninja_shop.api
 {
@@ -47,7 +48,11 @@ namespace ninja_shop.api
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("openPipe"));
             });
-            services.AddSingleton<IDataContext>(DatabaseStorage.Instance);
+
+            services.AddDbContext<NinjaShopContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("NinjaShop")));
+
+            services.AddScoped<IDataContext, DatabaseStorage>();
             
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICustomerRepository, DatabaseCustomerRepository>();
