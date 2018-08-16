@@ -33,5 +33,19 @@ namespace ninja_shop.api.DatabaseInfrastructure
         {
             return _context.Orders.ToList();
         }
+
+        public Order AddOrder(Order order)
+        {
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+            return order;
+        }
+
+        public Customer AddCustomer(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return customer;
+        }
     }
 }

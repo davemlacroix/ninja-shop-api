@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using ninja_shop.api.InMemoryInfrastructure;
 using ninja_shop.api.Services;
 using Newtonsoft.Json.Serialization;
 using ninja_shop.api.DatabaseInfrastructure;
@@ -55,8 +48,8 @@ namespace ninja_shop.api
             services.AddScoped<IDataContext, DatabaseStorage>();
             
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICustomerRepository, DatabaseCustomerRepository>();
-            services.AddScoped<IOrderRepository, DatabaseOrderRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

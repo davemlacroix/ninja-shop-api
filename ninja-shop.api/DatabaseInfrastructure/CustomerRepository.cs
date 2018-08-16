@@ -6,15 +6,14 @@ using System.Linq;
 
 namespace ninja_shop.api.DatabaseInfrastructure
 {
-    public class DatabaseCustomerRepository : ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly IDataContext _dataContext;
         private readonly NinjaShopContext _context;
 
-        public DatabaseCustomerRepository(IDataContext dataContext, NinjaShopContext context)
+        public CustomerRepository(IDataContext dataContext)
         {
             _dataContext = dataContext;
-            _context = context;
         }
 
         public bool Exists(int customerId)
@@ -34,9 +33,7 @@ namespace ninja_shop.api.DatabaseInfrastructure
 
         public Customer CreateCustomer(Customer customer)
         {
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
-
+            _dataContext.AddCustomer(customer);
             return customer;
         }
 

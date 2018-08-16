@@ -8,5 +8,7 @@ namespace ninja_shop.api.Services
         IList<Product> Products { get; }
         IList<Order> Orders { get; }
         IList<Customer> Customers { get; }
+        Order AddOrder(Order order);
+        Customer AddCustomer(Customer customer);
     }
 }
