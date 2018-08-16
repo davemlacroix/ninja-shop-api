@@ -10,10 +10,9 @@ namespace ninja_shop.api.DatabaseInfrastructure
         private readonly IDataContext _dataContext;
         private readonly NinjaShopContext _context;
 
-        public OrderRepository(IDataContext dataContext, NinjaShopContext context)
+        public OrderRepository(IDataContext dataContext)
         {
             _dataContext = dataContext;
-            _context = context;
         }
 
         public bool Exists(int orderId)
@@ -39,7 +38,6 @@ namespace ninja_shop.api.DatabaseInfrastructure
             order.Total = productRequests.Sum(x => x.CurrentPrice * x.RequestCount);
 
             _dataContext.AddOrder(order);
-
             return order;
         }
     }
