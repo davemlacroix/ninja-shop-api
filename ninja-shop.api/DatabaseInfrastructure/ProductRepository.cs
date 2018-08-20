@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ninja_shop.api.Services;
@@ -29,5 +30,47 @@ namespace ninja_shop.api.DatabaseInfrastructure
         {
             return _dataContext.Products;
         }
+
+        public bool ProductsPageExists(int pageNumber, int pageSize)
+        {
+            if (pageNumber < 1 ||
+                GetStartIndex(pageNumber, pageSize) >= _dataContext.Products.Count)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public IList<Product> GetProductsPage(int pageNumber, int pageSize)
+        {
+            if (!ProductsPageExists(pageNumber, pageSize))
+            {
+                return new List<Product>();
+            }
+
+            var startIndex = GetStartIndex(pageNumber, pageSize);
+            var numberOfProducts = GetNumberOfProducts(pageNumber, pageSize);
+
+            return _dataContext.Products.ToList().GetRange(startIndex, numberOfProducts);
+        }
+
+        private int GetNumberOfProducts(int pageNumber, int pageSize)
+        {
+            var numberOfProducts = pageSize;
+            var difference =  (pageNumber * pageSize) - _dataContext.Products.Count;
+            if (difference > 0)
+            {
+                numberOfProducts -= difference;
+            }
+
+            return numberOfProducts;
+        }
+
+        private int GetStartIndex(int pageNumber, int pageSize)
+        {
+            return (pageNumber - 1) * pageSize;
+        }
+
     }
 }

@@ -5,6 +5,11 @@
     <RootNamespace>ninja_shop.tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="Microsoft.NETCore.App" Version="2.0.6" />
@@ -17,8 +22,5 @@
       <Project>{B8557597-21D0-4CBE-9610-FBFBF49C765C}</Project>
       <Name>ninja-shop.api</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 </Project>

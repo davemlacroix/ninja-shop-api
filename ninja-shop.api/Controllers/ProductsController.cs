@@ -31,5 +31,19 @@ namespace ninja_shop.api.Controllers
 
             return Ok(product);
         }
+
+        [HttpGet("page/{pageNumber}/size/{pageSize}", Name = "GetProductsPage")]
+        public IActionResult GetProductsPage(int pageNumber, int pageSize)
+        {
+            if (!_productRepository.ProductsPageExists(pageNumber, pageSize))
+            {
+                return NotFound();
+            }
+
+            var products = _productRepository.GetProductsPage(pageNumber, pageSize);
+
+            return Ok(products);
+        }
+
     }
 }

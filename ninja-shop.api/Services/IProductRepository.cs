@@ -8,5 +8,7 @@ namespace ninja_shop.api.Services
         bool Exists(int productId);
         Product GetProduct(int productId);
         IList<Product> GetProducts();
+        bool ProductsPageExists(int pageNumber, int pageSize);
+        IList<Product> GetProductsPage(int pageNumber, int pageSize);
     }
 }

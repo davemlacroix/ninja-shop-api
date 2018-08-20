@@ -67,5 +67,94 @@ namespace ninja_shop.tests.DatabaseInfrastructure
 
             Assert.IsNull(returnProduct);
         }
+
+        [Test]
+        public void ProductPageExists_PageNumberLessThanZero_ReturnsFalse()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Count.Returns(10);
+
+            var pageExists = new ProductRepository(dataContext).ProductsPageExists(0, 5);
+
+            Assert.IsFalse(pageExists);
+        }
+
+        [Test]
+        public void ProductPageExists_StartofPageExceedsCount_ReturnsFalse()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Count.Returns(10);
+
+            var pageExists = new ProductRepository(dataContext).ProductsPageExists(2, 10);
+
+            Assert.IsFalse(pageExists);
+        }
+
+        [Test]
+        public void ProductPageExists_StartofPageWithinCount_ReturnsTrue()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Count.Returns(10);
+
+            var pageExists = new ProductRepository(dataContext).ProductsPageExists(2, 9);
+
+            Assert.IsTrue(pageExists);
+        }
+
+        [Test]
+        public void GetProductsPage_PageDoesNotExist_ReturnEmptyPage()
+        {
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Count.Returns(10);
+
+            var products = new ProductRepository(dataContext).GetProductsPage(0, 5);
+
+            Assert.AreEqual(products.Count, 0);
+        }
+
+        [Test]
+        public void GetProductsPage_Page1Length5_ReturnFirst5Products()
+        {
+
+            var productList = new List<Product> { new Product { Id = 1 },
+                                                  new Product { Id = 2 },
+                                                  new Product { Id = 3 },
+                                                  new Product { Id = 4 },
+                                                  new Product { Id = 5 },
+                                                  new Product { Id = 6 },
+                                                  new Product { Id = 7 },
+                                                  new Product { Id = 8 }
+                                                   };
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Returns(productList);
+
+            var products = new ProductRepository(dataContext).GetProductsPage(1, 5);
+
+            Assert.AreEqual(products[0].Id, 1);
+            Assert.AreEqual(products.Count, 5);
+        }
+
+        [Test]
+        public void GetProductsPage_Page2Length5_ReturnsLast3Products()
+        {
+
+            var productList = new List<Product> { new Product { Id = 1 },
+                                                  new Product { Id = 2 },
+                                                  new Product { Id = 3 },
+                                                  new Product { Id = 4 },
+                                                  new Product { Id = 5 },
+                                                  new Product { Id = 6 },
+                                                  new Product { Id = 7 },
+                                                  new Product { Id = 8 }
+                                                   };
+            var dataContext = Substitute.For<IDataContext>();
+            dataContext.Products.Returns(productList);
+
+            var products = new ProductRepository(dataContext).GetProductsPage(2, 5);
+
+            Assert.AreEqual(products[0].Id, 6);
+            Assert.AreEqual(products.Count, 3);
+        }
+
     }
 }
