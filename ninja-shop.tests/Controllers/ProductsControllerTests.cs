@@ -23,12 +23,21 @@ namespace ninja_shop.tests.Controllers
             var result = actionResult as OkObjectResult;
             var products = result.Value as IList<Product>;
 
-            _productRepository.Received(1).GetProducts();
             Assert.AreEqual(1, products.Count);
         }
-        
+
         [Test]
-        public void GetCustomerById()
+        public void GetCustomerById_ProductDoesNotExist_ReturnNotFound()
+        {
+            _productRepository.Exists(Arg.Any<int>()).Returns(false);
+
+            IActionResult actionResult = _controller.GetProductById(1);
+
+            Assert.IsInstanceOf<NotFoundResult>(actionResult);
+        }
+
+        [Test]
+        public void GetCustomerById_ProductExists_ReturnProduct()
         {
             var fakeProduct = new Product();
             _productRepository.GetProduct(Arg.Any<int>()).Returns(fakeProduct);
@@ -38,11 +47,40 @@ namespace ninja_shop.tests.Controllers
             var result = actionResult as OkObjectResult;
             var customer = result.Value as Product;
 
-            _productRepository.Received(1).Exists(1);
-            _productRepository.Received(1).GetProduct(1);
             Assert.AreSame(fakeProduct, customer);
         }
-        
+
+
+        [Test]
+        public void GetProductsPage_PageDoesNotExist_ReturnsNotFound()
+        {
+            _productRepository
+                .ProductsPageExists(Arg.Any<int>(), Arg.Any<int>())
+                .Returns(false);
+
+            IActionResult actionResult = _controller.GetProductsPage(1, 1);
+
+            Assert.IsInstanceOf<NotFoundResult>(actionResult);
+        }
+
+        [Test]
+        public void GetProductsPage_PageExists_ReturnsPage()
+        {
+            var fakeProduct = new Product();
+            _productRepository
+                .GetProductsPage(Arg.Any<int>(),Arg.Any<int>())
+                .Returns(new List<Product> { new Product() });
+            _productRepository
+                .ProductsPageExists(Arg.Any<int>(), Arg.Any<int>())
+                .Returns(true);
+
+            IActionResult actionResult = _controller.GetProductsPage(1,1);
+            var result = actionResult as OkObjectResult;
+            var products = result.Value as IList<Product>;
+            
+            Assert.AreEqual(1, products.Count);
+        }
+
         [SetUp]
         public void Setup()
         {
